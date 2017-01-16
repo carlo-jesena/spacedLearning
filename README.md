@@ -22,10 +22,12 @@ Dave wants to learn a new language and heard that carloben.info was a great plac
 - wants the app to adjust to his learning pace over time, so that the words he struggles with are reviewed more frequently
 - wants his progress saved with every question, so that he can review 1 or 100 words in any one session without having to worry about saving his progress or losing his place
 - wants to be able to access the site from his laptop or phone seamlessly
+- be able to log in and out using google authentication
+- be able to change languages (english to spanish and spanish to english)
 
 On his wishlist are some additional features:
 - being able to add new words to the stack
 - being able to correct cards if he finds mistakes
 - being able to take notes on the answer side of the card (maybe just an edit of the card)
 - manually flag cards for more or less repetition (in case certain terms are very important for his needs)
-- 
+-
