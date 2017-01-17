@@ -12,14 +12,14 @@ import reducer from './reducers';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 
-const store = createStore(moviesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
     <Main />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
 
 export default store;
