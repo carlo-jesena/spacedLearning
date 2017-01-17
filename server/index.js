@@ -62,3 +62,16 @@ function runServer() {
 if (require.main === module) {
     runServer();
 }
+
+const questions = [
+  {"Salamat" : "Thank you"},
+  {"Kamusta?" : "How are you?"},
+  {"Oo" : "Yes"},
+  {"Hindi" : "No or Not"},
+  {"Ako" : "I or Me"},
+  {"Ikaw" : "You"},
+  {"Sarap" :"Delicious"},
+  {"Paumanhin" : "Sorry, excuse me"},
+  {"Paalam" : "Farewell"},
+  {"Tubig" : "Water"}
+]

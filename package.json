@@ -83,5 +83,16 @@
   "dependencies": {
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlo-jesena/spacedLearning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlo-jesena/spacedLearning/issues"
+  },
+  "homepage": "https://github.com/carlo-jesena/spacedLearning#readme"
 }
