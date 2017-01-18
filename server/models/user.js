@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import questions from './question.js'
 
 const userSchema = mongoose.Schema({
 
