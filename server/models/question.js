@@ -10,14 +10,14 @@ const questionSchema = mongoose.Schema({
 module.exports = mongoose.model('Question', questionSchema)
 
 const questions = [
-  { question: "Salamat", answer: "Thank you", m: 3 },
-  { question: "Kamusta", answer: "How are you", m: 3},
-  { question: "Oo", answer: "Yes", m: 3 },
-  { question: "Hindi", answer: "No or Not", m: 3 },
-  { question: "Ako", answer: "I or Me", m: 3 },
-  { question: "Ikaw", answer: "You", m: 3 },
-  { question: "Sarap", answer: "Delicious", m: 3 },
-  { question: "Paumanhin", answer: "Sorry, excuse me", m: 3 },
-  { question: "Paalam", answer: "Farewell", m: 3 },
-  { question: "Tubig", answer: "Water", m: 3 }
+  { "question": "Salamat", "answer": "Thank you", "idx": "1" , "m": "3" },
+  { "question": "Kamusta", "answer": "How are you", "idx": "2" , "m": "3"},
+  { "question": "Oo", "answer": "Yes", "idx": "3" , "m": "3" },
+  { "question": "Hindi", "answer": "No or Not", "idx": "4" , "m": "3" },
+  { "question": "Ako", "answer": "I or Me", "idx": "5" , "m": "3" },
+  { "question": "Ikaw", "answer": "You", "idx": "6" , "m": "3" },
+  { "question": "Sarap", "answer": "Delicious", "idx": "7" , "m": "3" },
+  { "question": "Paumanhin", "answer": "Sorry, excuse me", "idx": "8" , "m": "3" },
+  { "question": "Paalam", "answer": "Farewell", "idx": "9" , "m": "3" },
+  { "question": "Tubig", "answer": "Water", "idx": "10" , "m": "3" }
 ]
