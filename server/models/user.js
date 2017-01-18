@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
+
 	username: {type: String, required: true},
-	questions: {type: Array, required: true}
+	score: Number,
+	questions: Array
+
 })
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', userSchema)
