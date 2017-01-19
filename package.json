@@ -86,7 +86,28 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
-    "isomorphic-fetch": "^2.2.1"
-  }
+    "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^4.7.7",
+    "passport": "^0.3.2",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-google-oauth20": "^1.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlo-jesena/spacedLearning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlo-jesena/spacedLearning/issues"
+  },
+  "homepage": "https://github.com/carlo-jesena/spacedLearning#readme"
 }

@@ -5,13 +5,18 @@ import Title from './title';
 import Login from './login';
 import QandA from './q-and-a';
 import Status from './status';
-// import Question from './status';
+import Question from './status';
+import Navbar from './navbar.js';
 
 function Main() {
   return (
     <div className="main">
-      <Title />
-      <Login />
+      <Navbar>
+        <Title>
+          Carloben's Learn It
+        </Title>
+        <Login />
+      </Navbar>
       <QandA />
       <Status />
     </div>
