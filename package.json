@@ -90,7 +90,8 @@
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.7.7",
     "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-google-oauth20": "^1.0.0",
+    "passport-http-bearer": "^1.0.1"
   },
   "directories": {
     "test": "test"
