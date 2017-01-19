@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default Status(props) => (
+export default function Status(props) {
+  return (
   <div id="title">
     {props.children}
   </div>
-);
+  );
+}

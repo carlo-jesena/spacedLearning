@@ -1,7 +1,10 @@
 import React from 'react';
 
-export default (props) => {
-  <div>
-    Login / Logout
-  </div>
+export default function Login(props) {
+
+  return (
+    <div>
+      Login / Logout
+    </div>
+  );
 }

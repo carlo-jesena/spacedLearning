@@ -2,19 +2,30 @@
 import * as actions from '../actions/actions.js';
 
 const initialState = {
-  currentQuestionId: null,
-  currentAnswer: null,
-  answerVisible: false,
   onLandingPage: true,
+  loading: true,
+  score: '-',
+  question: null,
+  userid: 'carloben',
 };
 
 const mainReducer = (state = initialState, action) => {
-  if (action.type === actions.SHOW_ANSWER) {
+  if (action.type === actions.START_QUIZ
+      || action.type === actions.POST_ANSWER) {
     return ({
       ...state,
-      answerVisible: true,
+      loading: true,
     });
   }
+
+  if (action.type === actions.GET_QUESTION_SUCCESS) {
+    return ({
+      ...state,
+      loading: false,
+      question: action.question,
+    });
+  }
+
 
   return state;
 };

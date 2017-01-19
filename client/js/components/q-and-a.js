@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 
-export default QandA extends Component {
+export default class QandA extends Component {
   constructor(props) {
     super(props);
   }

@@ -2,31 +2,27 @@
 // maybe need for mobile
 // import 'isomorphic-fetch';
 
-export const SHOW_ANSWER = 'SHOW_ANSWER';
-export const showAnswer = () => ({
-  type: SHOW_ANSWER,
+export const START_QUIZ = 'START_QUIZ';
+export const startQuiz = () => ({
+  type: START_QUIZ,
 });
 
-export const GET_QUESTION = 'GET_QUESTION';
-export const getQuestion = () => ({
-  type: GET_QUESTION,
+export const POST_ANSWER = 'POST_ANSWER';
+export const postAnswer = (result) => ({
+  type: POST_ANSWER,
+  result
 });
 
 export const GET_QUESTION_SUCCESS = 'GET_QUESTION_SUCCESS';
-export const getQuestionSuccess = (item) => ({
+export const getQuestionSuccess = (question) => ({
   type: GET_QUESTION_SUCCESS,
-  item
+  question
 });
 
-export const POST_RESULT = 'POST_RESULT';
-export const postResult = () => ({
-  type: POST_RESULT,
-});
-
-export const fetchQuestion = () => (dispatch) => {
+export const getQuestion = (userid) => (dispatch) => {
   dispatch(getQuestion());
 
-  fetch('localhost:8080/question')
+  fetch(`localhost:8080/users/${userid}`)
   .then((res) => {
     console.log('fetchQuestion');
     if (!res.ok) {
@@ -37,7 +33,7 @@ export const fetchQuestion = () => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(item => dispatch(fetchQuestionSuccess(item)))
+  .then(question => dispatch(fetchQuestionSuccess(question)))
   .catch(console.error);
 };
 
