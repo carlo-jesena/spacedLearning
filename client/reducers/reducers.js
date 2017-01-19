@@ -5,22 +5,26 @@ const initialState = {
   onLandingPage: true,
   loading: true,
   score: '-',
-  question: null,
+  question: {
+    m: null,
+    idx: null,
+    answer: "loading...",
+    question: "loading..."
+  },
   userid: 'carloben',
 };
 
 const mainReducer = (state = initialState, action) => {
   if (action.type === actions.GET_QUESTION) {
     return ({
-      ...state,
-      loading: true,
+      initialState,
     });
   }
 
   if (action.type === actions.GET_QUESTION_SUCCESS) {
     return ({
       ...state,
-      loading: false,
+      score: action.score,
       question: action.question,
     });
   }

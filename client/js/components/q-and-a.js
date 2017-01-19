@@ -1,18 +1,26 @@
 import React from 'react';
 import { Component } from 'react';
 
-export default class QandA extends Component {
+class QandA extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    if (this.props.loading === null) {
+
+    }
 
     return (
       <div>
-        Questions...
+        <button>Get Question</button>
         Answers...
       </div>
     )
   }
 }
+
+const mapStateToProps = (state, props) => ({
+  score: state.score,
+  question: state.question,
+})
