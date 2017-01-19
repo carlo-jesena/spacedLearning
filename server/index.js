@@ -3,7 +3,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import User from './models/user.js';
-import Question from './models/question.js';
+import GoogleStrategy from 'passport-google-oauth20';
+import passport from 'passport';
 
 mongoose.Promise = global.Promise;
 
@@ -16,7 +17,7 @@ const app = express();
 const jsonParser = bodyparser.json();
 
 // spaced repitition algorithm
-const algorithm = (arr, answer) => {
+const spacedRepAlgo = (arr, answer) => {
   const questions = arr.shift();
   if (answer === "true") {
     questions.m *= 2;
@@ -80,9 +81,9 @@ app.get('/users/:username', (req,res)=>{
 })
 
 // POST to retrieve next question
-// if user gets question right, score ++
 // getting back either true or false from client side, update the m value based on that
-// run algortihm to change the array
+// if user gets question right(answer=true), score ++
+// run algortihm update the m value and change the array
 // send back next question
 app.post('/users/:username', (req,res)=>{
   User.findOne(req.params)
@@ -96,7 +97,7 @@ app.post('/users/:username', (req,res)=>{
             score += 10;
         }
         // console.log("current questions: ", current.questions, req.body.answer)
-        let newQuestions = algorithm(current.questions, req.body.answer);
+        let newQuestions = spacedRepAlgo(current.questions, req.body.answer);
         // console.log("next questions array: ", newQuestions)
         User.findOneAndUpdate({__v: 0}, {$set:{score: score, questions: newQuestions}}, (user)=>{
           res.status(201).json({score: score, question: newQuestions[0]});
@@ -106,6 +107,49 @@ app.post('/users/:username', (req,res)=>{
     res.status(500).json(err)
     })
 });
+
+passport.use(new GoogleStrategy({
+    clientID: '706655097490-k63cp7hbpara5l4oemn5517qh83scil5.apps.googleusercontent.com',
+    clientSecret: 'hd6jsrk9VfVbZmbJuggsLG1_',
+    callbackURL: "http://localhost:8080/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log('accessToken: ', accessToken);
+    console.log('profile: ', profile);
+    return done(null, profile);
+
+    // let myQues = Ques.find({})
+
+    User.findOneAndUpdate({ googleId: profile.id },
+            { $set: { username: profile.name, accessToken: accessToken } },
+            { upsert: true, 'new': true })
+            .then((user) => {
+                done(null, user);
+            }).catch((err) => {
+                console.log('catch error', err)
+            });
+
+    // User.findOne({ googleId: profile.id }, function (err, user) {
+    //   if (!user) {
+    //     User.create(
+    //        { googleId: profile.id, accessToken: accessToken }
+    //     )
+    //   }
+    //   return cb(err, user);
+    // });
+
+}));
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/', session: false }),
+  function(req, res) {
+    res.cookie('accessToken', req.user.accessToken, { expires: 0, httpOnly: false});
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 function runServer() {
     var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://carloben:carloben@ds111549.mlab.com:11549/spaced-learning';
