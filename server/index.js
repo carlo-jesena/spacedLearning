@@ -16,16 +16,17 @@ const app = express();
 const jsonParser = bodyparser.json();
 
 // spaced repitition algorithm
-const algorithm = (arr,answer)=>{
+const algorithm = (arr, answer) => {
   const questions = arr.shift();
-  if (questions.answer === "true") {
-    questions.m += 3;
+  if (answer === "true") {
+    questions.m ++;
   } else {
     questions.m = 3;
   }
   arr.splice(questions.m, 0, questions);
   return arr;
 }
+
 
 app.use(jsonParser);
 app.use(express.static(process.env.CLIENT_PATH));
@@ -88,16 +89,15 @@ app.post('/users/:username', (req,res)=>{
       console.log("my log: ", userObj)
         let current = userObj;
         let score = current.score;
-        console.log(req.body.answer)
+        // console.log("the score is: ", score)
         if (req.body.answer === "true") {
             score += 10;
         }
-        console.log("current score: ", score)
+        console.log("current questions: ", current.questions, req.body.answer)
         let newQuestions = algorithm(current.questions, req.body.answer);
-        console.log("new questions array: ", newQuestions)
+        // console.log("next questions array: ", nextQuestions)
         User.findOneAndUpdate({__v: 0}, {$set:{score: score, questions: newQuestions}}, (user)=>{
-          res.status(201).json({score: score, question: newQuestions[0]
-          });
+          res.status(201).json({score: score, question: newQuestions[0]});
         });
       });
 });
