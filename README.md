@@ -36,14 +36,14 @@ On his wishlist are some additional features:
 
 ### New user
 
-POST to `/users/:userName`
-Body: { "answer": true/false }
+### POST to `/users/:userName`
+- Body: { "answer": true/false }
 
-POST to `/users`
-Body: { "username": "User Name" }
-RES: { "message": "User created" }
+### POST to `/users`
+- Body: { "username": "User Name" }
+- RES: { "message": "User created" }
 
-GET to `users/:username`
-RES: question object & score
+### GET to `users/:username`
+- RES: question object & score
 
 
