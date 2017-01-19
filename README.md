@@ -34,16 +34,14 @@ On his wishlist are some additional features:
 
 ## Endpoints
 
-### New user
-
-### POST to `/users/:userName`
+### Submit Answer: POST to `/users/:userName`
 - Body: { "answer": true/false }
 
-### POST to `/users`
+### New user: POST to `/users`
 - Body: { "username": "User Name" }
 - RES: { "message": "User created" }
 
-### GET to `users/:username`
+### Get Question: GET to `users/:username`
 - RES: question object & score
-
+- Usually used only for first question.
 
