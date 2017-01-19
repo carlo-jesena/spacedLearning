@@ -95,4 +95,19 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   }
+    "mongoose": "^4.7.7",
+    "passport": "^0.3.2",
+    "passport-google-oauth20": "^1.0.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlo-jesena/spacedLearning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlo-jesena/spacedLearning/issues"
+  },
+  "homepage": "https://github.com/carlo-jesena/spacedLearning#readme"
 }
