@@ -23,7 +23,9 @@ const algorithm = (arr, answer) => {
   } else {
     questions.m = 3;
   }
+  console.log("checkthe m value: ", questions)
   arr.splice(questions.m, 0, questions);
+  console.log("this is the array: ", arr)
   return arr;
 }
 
@@ -86,16 +88,16 @@ app.post('/users/:username', (req,res)=>{
   User.findOne(req.params)
   // console.log("my log: ", req.params)
   .then(userObj => {
-      console.log("my log: ", userObj)
+      // console.log("my log: ", userObj)
         let current = userObj;
         let score = current.score;
         // console.log("the score is: ", score)
         if (req.body.answer === "true") {
             score += 10;
         }
-        console.log("current questions: ", current.questions, req.body.answer)
+        // console.log("current questions: ", current.questions, req.body.answer)
         let newQuestions = algorithm(current.questions, req.body.answer);
-        // console.log("next questions array: ", nextQuestions)
+        console.log("next questions array: ", newQuestions)
         User.findOneAndUpdate({__v: 0}, {$set:{score: score, questions: newQuestions}}, (user)=>{
           res.status(201).json({score: score, question: newQuestions[0]});
         });
