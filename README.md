@@ -30,4 +30,20 @@ On his wishlist are some additional features:
 - being able to correct cards if he finds mistakes
 - being able to take notes on the answer side of the card (maybe just an edit of the card)
 - manually flag cards for more or less repetition (in case certain terms are very important for his needs)
--
+
+
+## Endpoints
+
+### New user
+
+POST to `/users/:userName`
+Body: { "answer": true/false }
+
+POST to `/users`
+Body: { "username": "User Name" }
+RES: { "message": "User created" }
+
+GET to `users/:username`
+RES: question object & score
+
+
