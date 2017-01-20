@@ -84,7 +84,6 @@ app.get('/userlist', (req, res) => {
   User.find()
   .then(users => {
     let userlist = users.map(item => item.username);
-    console.log('userlist???', userlist);
   res.status(200).json(userlist)
   })
   .catch(err => res.status(500).json(err));

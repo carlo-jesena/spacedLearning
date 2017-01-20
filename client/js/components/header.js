@@ -11,10 +11,15 @@ class Header extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   componentDidMount() {
     this.props.dispatch(actions.fetchUsers());
+  }
+
+  createUser(e) {
+    // TODO
   }
 
   handleChange(event) {
@@ -54,6 +59,9 @@ class Header extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        <button>
+          Create User
+        </button>
     	</header>
     );
   }

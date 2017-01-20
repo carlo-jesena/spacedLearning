@@ -8,7 +8,8 @@ const initialState = {
   question: null,
   username: 'carloben',
   usersLoading: true,
-  userList: ['loading...']
+  userList: ['loading...'],
+  showAnswer: false,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -24,6 +25,7 @@ const mainReducer = (state = initialState, action) => {
       ...state,
       loading: false,
       question: action.question,
+      showAnswer: false,
     });
   }
 
@@ -46,6 +48,20 @@ const mainReducer = (state = initialState, action) => {
     return ({
       ...state,
       username: action.user
+    });
+  }
+
+  if (action.type === actions.HIDE_ANSWER) {
+    return ({
+      ...state,
+      showAnswer: false
+    });
+  }
+
+  if (action.type === actions.SHOW_ANSWER) {
+    return ({
+      ...state,
+      showAnswer: true
     });
   }
 

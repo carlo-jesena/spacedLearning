@@ -13,10 +13,16 @@ class QandA extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.showAnswer = this.showAnswer.bind(this);
   }
 
   componentDidMount() {
     this.props.dispatch(actions.fetchQuestion(this.props.username));
+  }
+
+  showAnswer() {
+    console.log('called????');
+    this.props.dispatch(actions.showAnswer());
   }
 
   handleChange(event) {
@@ -52,9 +58,7 @@ class QandA extends Component {
         </div>
       );
     }
-    console.log('qanda props', this.props);
-// submit form : "answer submit"
-// submit button: "answer button"
+
     return (
       <div>
 
@@ -70,8 +74,9 @@ class QandA extends Component {
           <h1 className="english-title">
             English:
           </h1>
-          <h2 className="english-question">
-            {this.props.question.question.answer}
+          <h2 className="english-question" onClick={this.showAnswer}>
+            {this.props.showAnswer
+            ? this.props.question.question.answer : '(click to reveal)'}
           </h2>
         </div>
         <div className="answer-and-score">
@@ -100,6 +105,7 @@ const mapStateToProps = (state, props) => ({
   question: state.question,
   username: state.username,
   loading: state.loading,
+  showAnswer: state.showAnswer,
 });
 
 export default connect(mapStateToProps)(QandA);

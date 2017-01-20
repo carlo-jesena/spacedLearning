@@ -15,6 +15,7 @@ export const getQuestionSuccess = (question) => ({
 
 export const fetchQuestion = (userid) => (dispatch) => {
   dispatch(getQuestion());
+  dispatch(hideAnswer());
 
   fetch(`http://localhost:8080/users/${userid}`)
   .then((res) => {
@@ -101,4 +102,14 @@ export const CHANGE_USER = 'CHANGE_USER';
 export const changeUser = (user) => ({
   type: CHANGE_USER,
   user
+});
+
+export const HIDE_ANSWER = 'HIDE_ANSWER';
+export const hideAnswer = () => ({
+  type: HIDE_ANSWER,
+});
+
+export const SHOW_ANSWER = 'SHOW_ANSWER';
+export const showAnswer = () => ({
+  type: SHOW_ANSWER,
 });
