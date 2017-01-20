@@ -1,0 +1,97 @@
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  position: relative;
+}
+
+h1 {
+  font-family: 'Lato';
+  font-size:35px;
+  font-weight: lighter;
+}
+
+h2 {
+  font-family: 'Lato';
+  font-size:30px;
+  font-weight: lighter;
+}
+
+.page-header {
+  text-align: center;
+}
+
+.titleheader {
+  font-size: 85px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 530;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.username {
+  margin-top: 5px;
+  font-weight: lighter;
+}
+
+.qanda-container {
+
+}
+
+.tagalog-card {
+    float: left;
+    text-align: center;
+    width: 250px;
+    height: 135px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-left: 55px;
+}
+
+.tagalog-title {
+  margin-top: 15px;
+}
+
+.english-card {
+    float: right;
+    text-align: center;
+    width: 250px;
+    height: 135px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-right: 55px;
+}
+
+.english-title {
+  margin-top: 15px;
+}
+
+.answer-and-score {
+    font-size: 25px;
+    margin: auto;
+    margin-top: 50px;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.answer-form {
+    margin-top: 25px;
+}
+
+.score {
+  margin-top: 20px;
+}
+
+.qanda-container {
+  margin-top: 100px;
+}
+
+.answer-input {
+
+}
