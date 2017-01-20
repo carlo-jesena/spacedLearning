@@ -69,11 +69,11 @@ class QandA extends Component {
           <h1 className="english-title">
             English:
           </h1>
-<<<<<<< HEAD
+
           <h2 className="english-question">
             {this.props.question.question.answer}
           </h2>
-=======
+
           <form onSubmit={this.handleSubmit} className="answer-form">
             <label>
               Your answer:
@@ -90,7 +90,7 @@ class QandA extends Component {
         <br />
         <div className="score">
           Current score:  {this.props.question.score}
->>>>>>> a162a12b036fb6f4e3082d1dd8c69a7502d356c0
+
         </div>
       </div>
     );
