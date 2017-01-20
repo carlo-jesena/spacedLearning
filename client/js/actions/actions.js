@@ -13,7 +13,7 @@ export const fetchQuestion = (username) => (dispatch) => {
   dispatch(getQuestion());
   dispatch(hideAnswer());
 
-  fetch(`http://localhost:8080/users/${username}`)
+  fetch(`/users/${username}`)
   .then((res) => {
     console.log('fetchQuestion');
     if (!res.ok) {
@@ -37,7 +37,7 @@ export const postAnswer = (answer, username) => (dispatch) => {
   dispatch(getQuestion());
 
   fetch(
-    `http://localhost:8080/answer/${username}`,
+    `/answer/${username}`,
     {
       method: 'post',
       headers: {
@@ -77,7 +77,7 @@ export const getUsersSuccess = (users) => ({
 export const fetchUsers = () => (dispatch) => {
   dispatch(getUsers());
 
-  fetch(`http://localhost:8080/userlist`)
+  fetch(`/userlist`)
   .then((res) => {
     console.log('fetch user list');
     if (!res.ok) {
@@ -112,7 +112,7 @@ export const showAnswer = () => ({
 
 export const createUser = (newUser) => (dispatch) => {
   fetch(
-    `http://localhost:8080/users/${newUser}`,
+    `/users/${newUser}`,
     {
       method: 'post',
       headers: {
@@ -139,7 +139,7 @@ export const createUser = (newUser) => (dispatch) => {
 
 export const addQuestion = (username, question) => (dispatch) => {
   fetch(
-    `http://localhost:8080/question/${username}`,
+    `/question/${username}`,
     {
       method: 'post',
       headers: {
