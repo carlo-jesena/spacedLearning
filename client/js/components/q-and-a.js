@@ -52,7 +52,7 @@ class QandA extends Component {
         </div>
       );
     }
-    console.log(this.props.question.question.answer);
+    console.log('qanda props', this.props);
 // submit form : "answer submit"
 // submit button: "answer button"
     return (
@@ -93,7 +93,7 @@ class QandA extends Component {
 
 const mapStateToProps = (state, props) => ({
   question: state.question,
-  userid: state.userid,
+  username: state.username,
   loading: state.loading,
 });
 

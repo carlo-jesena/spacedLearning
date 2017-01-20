@@ -7,6 +7,8 @@ const initialState = {
   score: '-',
   question: null,
   username: 'carloben',
+  usersLoading: true,
+  userList: ['loading...']
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -25,6 +27,27 @@ const mainReducer = (state = initialState, action) => {
     });
   }
 
+  if (action.type === actions.GET_USERS) {
+    return ({
+      ...state,
+      usersLoading: true,
+    });
+  }
+
+  if (action.type === actions.GET_USERS_SUCCESS) {
+    return ({
+      ...state,
+      usersLoading: false,
+      userList: action.users,
+    })
+  }
+
+  if (action.type === actions.CHANGE_USER) {
+    return ({
+      ...state,
+      username: action.user
+    });
+  }
 
   return state;
 };
