@@ -6,7 +6,7 @@ const initialState = {
   loading: true,
   score: '-',
   question: null,
-  userid: 'carloben',
+  username: 'carloben',
 };
 
 const mainReducer = (state = initialState, action) => {

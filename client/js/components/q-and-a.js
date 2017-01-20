@@ -12,15 +12,15 @@ class QandA extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(actions.fetchQuestion(this.props.userid));
+    this.props.dispatch(actions.fetchQuestion(this.props.username));
   }
 
   correctAnswer(e) {
-    this.props.dispatch(actions.postAnswer(true, this.props.userid));
+    this.props.dispatch(actions.postAnswer(true, this.props.username));
   }
 
   wrongAnswer(e) {
-    this.props.dispatch(actions.postAnswer(false, this.props.userid));
+    this.props.dispatch(actions.postAnswer(false, this.props.username));
   }
 
   render() {
@@ -35,13 +35,13 @@ class QandA extends Component {
     return (
       <div>
         <h1>
-          Question:
+          Tagalog:
         </h1>
         <h2>
           {this.props.question.question.question}
         </h2>
         <h1>
-          Answer:
+          English:
         </h1>
         <h2>
           {this.props.question.question.answer}
@@ -52,6 +52,8 @@ class QandA extends Component {
         <button id="wrong" onClick={this.wrongAnswer}>
           Incorrect
         </button>
+        <br/>
+        <div className="score"> Current score:{this.props.question.score}</div>
       </div>
     );
   }

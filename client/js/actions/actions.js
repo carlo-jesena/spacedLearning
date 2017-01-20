@@ -16,7 +16,7 @@ export const getQuestionSuccess = (question) => ({
 export const fetchQuestion = (userid) => (dispatch) => {
   dispatch(getQuestion());
 
-  fetch(`http://localhost:8080/users/${userid}`)
+  fetch(`http://localhost:8080/users/carloben`)
   .then((res) => {
     console.log('fetchQuestion');
     if (!res.ok) {
@@ -41,7 +41,7 @@ export const postAnswer = (answer, userid) => (dispatch) => {
 
   // fetch(`localhost:8080/answer/${userid}/${answer}`)
   fetch(
-    `http://localhost:8080/users/${userid}`,
+    `http://localhost:8080/users/carloben`,
     {
       method: 'post',
       headers: {
