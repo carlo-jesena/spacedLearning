@@ -51,6 +51,7 @@ class Header extends Component {
 
     this.props.dispatch(actions.createUser(this.state.newUser));
     this.setState({ newUser: '' });
+    this.props.dispatch(actions.getUsers());
   }
 
   render() {

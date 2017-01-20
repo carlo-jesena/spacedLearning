@@ -135,8 +135,9 @@ export const createUser = (newUser) => (dispatch) => {
     return res;
   })
   .then(() => {
-    dispatch(getUsers());
+    dispatch(fetchUsers());
     dispatch(changeUser(newUser));
+    dispatch(fetchQuestion(newUser));
   })
   .catch(console.error);
 }
