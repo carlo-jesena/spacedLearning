@@ -1,7 +1,3 @@
-/* global fetch */
-// maybe need for mobile
-// import 'isomorphic-fetch';
-
 export const GET_QUESTION = 'GET_QUESTION';
 export const getQuestion = () => ({
   type: GET_QUESTION,

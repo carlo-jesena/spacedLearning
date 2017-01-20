@@ -72,6 +72,7 @@ app.get('/users/:username', (req,res)=>{
     })
 })
 
+// GET userlist
 app.get('/userlist', (req, res) => {
   User.find()
   .then(users => {
@@ -82,7 +83,7 @@ app.get('/userlist', (req, res) => {
 });
 
 // POST to retrieve next question
-app.post('/answer/:username', (req,res)=>{
+app.post('/answer/:username', (req,res) => {
   User.findOne(req.params)
   .then(userObj => {
         let score = userObj.score;
@@ -97,6 +98,19 @@ app.post('/answer/:username', (req,res)=>{
   .catch(err => {
     res.status(500).json(err)
     })
+});
+
+app.post('/question', (req, res) => {
+  const newQuestion = {
+    question: req.body.question,
+    answer: req.body.answer,
+    m: 1
+  };
+
+  User.findOneAndUpdate(req.params, { questions: { $push: newQuestion }}, () => {
+    res.sendStatus(201);
+  })
+
 });
 
 function runServer() {
