@@ -84,12 +84,12 @@ class QandA extends Component {
                 Your answer:
                 <input
                   type="text"
-                  className="answer-input"
+                  className="answer input"
                   value={this.state.answer}
                   onChange={this.handleChange}
                 />
               </label>
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Submit" className="submit input"/>
             </form>
             <div className="score">
               Current score:  {this.props.question.score}

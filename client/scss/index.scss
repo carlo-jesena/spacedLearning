@@ -45,7 +45,7 @@ h2 {
     float: left;
     text-align: center;
     width: 250px;
-    height: 135px;
+    min-height: 135px;
     border: 1px solid black;
     box-sizing: border-box;
     border-radius: 5px;
@@ -60,7 +60,7 @@ h2 {
     float: right;
     text-align: center;
     width: 250px;
-    height: 135px;
+    min-height: 135px;
     border: 1px solid black;
     box-sizing: border-box;
     border-radius: 5px;
@@ -94,4 +94,16 @@ h2 {
 
 .answer-input {
 
+}
+
+.footer {
+  margin-top: 50px;
+  margin-left: 50px;
+  padding: 40px;
+  line-height: 2em;
+  font-size: 1.1em;
+}
+
+.input {
+  font-size: 1.1em;
 }
