@@ -36,13 +36,12 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 // Add API endpoints here
 // POST new user--- creates a user object with username, score and questions properties
-app.post('/users', jsonParser, (req, res) => {
-  if (!req.body.username) {
+app.post('/users/:newUser', jsonParser, (req, res) => {
+  if (!req.params.newUser) {
     return res.status(400).json({message: 'Must specify a username'})
   }
-  User
-  .create({
-    username: req.body.username,
+  User.create({
+    username: req.params.newUser,
     score: 0,
     questions: [
       { question: "Salamat", answer: "Thank you", idx: 1, m: 1 },
@@ -94,7 +93,7 @@ app.get('/userlist', (req, res) => {
 // if user gets question right(answer=true), score ++
 // run algortihm update the m value and change the array
 // send back next question
-app.post('/users/:username', (req,res)=>{
+app.post('/answer/:username', (req,res)=>{
   User.findOne(req.params)
   // console.log("my log: ", req.params)
   .then(userObj => {
