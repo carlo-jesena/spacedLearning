@@ -18,16 +18,10 @@ class Header extends Component {
     this.handleNewUserChange = this.handleNewUserChange.bind(this);
     this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
 
-
-    this.createUser = this.createUser.bind(this);
   }
 
   componentDidMount() {
     this.props.dispatch(actions.fetchUsers());
-  }
-
-  createUser(e) {
-    // TODO
   }
 
   handleChange(event) {
@@ -35,7 +29,7 @@ class Header extends Component {
   }
 
   handleSubmit(event) {
-    console.log('dropdown value', this.state.value);
+
     event.preventDefault();
     this.props.dispatch(actions.changeUser(this.state.value));
     this.props.dispatch(actions.fetchQuestion(this.state.value));
@@ -46,7 +40,6 @@ class Header extends Component {
   }
 
   handleNewUserSubmit(event) {
-    console.log('new user', this.state.newUser);
     event.preventDefault();
 
     this.props.dispatch(actions.createUser(this.state.newUser));
@@ -55,8 +48,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log('header props:', this.props);
-
     const userOptions = this.props.userList.map(user =>
       <option value={user} key={user}>
         {user}

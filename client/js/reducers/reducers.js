@@ -1,4 +1,4 @@
-// import 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import * as actions from '../actions/actions.js';
 
 const initialState = {
