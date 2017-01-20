@@ -31,21 +31,26 @@ class QandA extends Component {
         </div>
       );
     }
-
+// submit form : "answer submit"
+// submit button: "answer button"
     return (
       <div>
-        <h1>
-          Tagalog:
-        </h1>
-        <h2>
-          {this.props.question.question.question}
-        </h2>
-        <h1>
-          English:
-        </h1>
-        <h2>
-          {this.props.question.question.answer}
-        </h2>
+        <div className="tagalog card">
+          <h1 className="tagalog title">
+            Tagalog:
+          </h1>
+          <h2 className="tagalog question">
+            {this.props.question.question.question}
+          </h2>
+        </div>
+        <div className="english card">
+          <h1 className="english title">
+            English:
+          </h1>
+          <h2 className="english question">
+            {this.props.question.question.answer}
+          </h2>
+        </div>
         <button id="right" onClick={this.correctAnswer}>
           Correct
         </button>
