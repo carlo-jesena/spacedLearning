@@ -35,19 +35,19 @@ class QandA extends Component {
 // submit button: "answer button"
     return (
       <div>
-        <div className="tagalog card">
-          <h1 className="tagalog title">
+        <div className="tagalog-card">
+          <h1 className="tagalog-title">
             Tagalog:
           </h1>
-          <h2 className="tagalog question">
+          <h2 className="tagalog-question">
             {this.props.question.question.question}
           </h2>
         </div>
-        <div className="english card">
-          <h1 className="english title">
+        <div className="english-card">
+          <h1 className="english-title">
             English:
           </h1>
-          <h2 className="english question">
+          <h2 className="english-question">
             {this.props.question.question.answer}
           </h2>
         </div>

@@ -8,16 +8,18 @@ body {
   position: relative;
 }
 
-h1 {
-  font-family: 'Lato';
-  font-size:30px;
-}
+// h1 {
+//   font-family: 'Lato';
+//   font-size:30px;
+// }
 
 .page-header {
   text-align: center;
 }
 
-.title {
+.titleheader {
+  font-size: 50px;
+  font-family: 'Raleway', sans-serif;
   margin-bottom: 5px;
 }
 
@@ -26,14 +28,15 @@ h1 {
   font-weight: lighter;
 }
 
-.qAndA-container {
-
+.tagalog-card {
+    float: right;
+    text-align: center;
+    width: 250px;
+    height: 90px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+    border-radius: 5px;
 }
-
-.english {
-
-}
-
 
 .score {
   float: left;
