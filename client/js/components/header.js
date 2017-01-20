@@ -44,9 +44,9 @@ class Header extends Component {
 
     return (
       <header className="page-header">
-        <h1 className="titleheader">
+        <p className="titleheader">
           Tagalog With Me
-        </h1>
+        </p>
         <p className="username">
           Logged in as: {this.props.username}
         </p>

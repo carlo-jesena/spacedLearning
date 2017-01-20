@@ -61,39 +61,40 @@ class QandA extends Component {
 
     return (
       <div>
-
-        <div className="tagalog-card">
-          <h1 className="tagalog-title">
-            Tagalog:
-          </h1>
-          <h2 className="tagalog-question">
-            {this.props.question.question.question}
-          </h2>
-        </div>
-        <div className="english-card">
-          <h1 className="english-title">
-            English:
-          </h1>
-          <h2 className="english-question" onClick={this.showAnswer}>
-            {this.props.showAnswer
-            ? this.props.question.question.answer : '(click to reveal)'}
-          </h2>
-        </div>
-        <div className="answer-and-score">
-          <form onSubmit={this.handleSubmit} className="answer-form">
-            <label>
-              Your answer:
-              <input
-                type="text"
-                className="answer-input"
-                value={this.state.answer}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-          <div className="score">
-            Current score:  {this.props.question.score}
+        <div className="qanda-container">
+          <div className="tagalog-card">
+            <h1 className="tagalog-title">
+              Tagalog:
+            </h1>
+            <h2 className="tagalog-question">
+              {this.props.question.question.question}
+            </h2>
+          </div>
+          <div className="english-card">
+            <h1 className="english-title">
+              English:
+            </h1>
+            <h2 className="english-question" onClick={this.showAnswer}>
+              {this.props.showAnswer
+              ? this.props.question.question.answer : '(click to reveal)'}
+            </h2>
+          </div>
+          <div className="answer-and-score">
+            <form onSubmit={this.handleSubmit} className="answer-form">
+              <label>
+                Your answer:
+                <input
+                  type="text"
+                  className="answer-input"
+                  value={this.state.answer}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+            <div className="score">
+              Current score:  {this.props.question.score}
+            </div>
           </div>
         </div>
       </div>
