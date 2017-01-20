@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -39,7 +40,7 @@ class Header extends Component {
 
     return (
       <header className="page-header">
-        <h1 className="title">
+        <h1 className="titleheader">
           Tagalog With Me
         </h1>
         <p className="username">

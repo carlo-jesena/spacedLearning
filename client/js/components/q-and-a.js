@@ -57,6 +57,7 @@ class QandA extends Component {
 // submit button: "answer button"
     return (
       <div>
+
         <div className="tagalog-card">
           <h1 className="tagalog-title">
             Tagalog:
@@ -69,6 +70,11 @@ class QandA extends Component {
           <h1 className="english-title">
             English:
           </h1>
+          <h2 className="english-question">
+            {this.props.question.question.answer}
+          </h2>
+        </div>
+        <div className="answer-and-score">
           <form onSubmit={this.handleSubmit} className="answer-form">
             <label>
               Your answer:
@@ -81,10 +87,9 @@ class QandA extends Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
-        </div>
-        <br />
-        <div className="score">
-          Current score:  {this.props.question.score}
+          <div className="score">
+            Current score:  {this.props.question.score}
+          </div>
         </div>
       </div>
     );
