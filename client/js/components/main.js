@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 
 import Header from './header';
 import QandA from './q-and-a';
+import Footer from './footer';
 
 function Main() {
   return (
-    <div className="main">
-      <Header />
-      <QandA />
+    <div>
+      <div className="main">
+        <Header />
+        <QandA />
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -9,11 +9,11 @@ export const getQuestionSuccess = (question) => ({
   question
 });
 
-export const fetchQuestion = (userid) => (dispatch) => {
+export const fetchQuestion = (username) => (dispatch) => {
   dispatch(getQuestion());
   dispatch(hideAnswer());
 
-  fetch(`/users/${userid}`)
+  fetch(`/users/${username}`)
   .then((res) => {
     console.log('fetchQuestion');
     if (!res.ok) {
@@ -33,11 +33,11 @@ export const fetchQuestion = (userid) => (dispatch) => {
   .catch(console.error);
 };
 
-export const postAnswer = (answer, userid) => (dispatch) => {
+export const postAnswer = (answer, username) => (dispatch) => {
   dispatch(getQuestion());
 
   fetch(
-    `/answer/${userid}`,
+    `/answer/${username}`,
     {
       method: 'post',
       headers: {
@@ -110,7 +110,6 @@ export const showAnswer = () => ({
   type: SHOW_ANSWER,
 });
 
-export const CREATE_USER = 'CREATE_USER';
 export const createUser = (newUser) => (dispatch) => {
   fetch(
     `/users/${newUser}`,
@@ -136,4 +135,31 @@ export const createUser = (newUser) => (dispatch) => {
     dispatch(fetchQuestion(newUser));
   })
   .catch(console.error);
+}
+
+export const addQuestion = (username, question) => (dispatch) => {
+  fetch(
+    `/question/${username}`,
+    {
+      method: 'post',
+      headers: {
+        "Content-type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({ question })
+    }
+  )
+  .then((res) => {
+    console.log(username, 'add question', question);
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
+  .then(() => {
+    dispatch(fetchQuestion(username))
+  })
+  .catch(console.error);
+
 }

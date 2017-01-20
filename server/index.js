@@ -42,15 +42,16 @@ app.post('/users/:newUser', jsonParser, (req, res) => {
     score: 0,
     questions: [
       { question: "Salamat", answer: "Thank you", idx: 1, m: 1 },
-      { question: "Kamusta", answer: "How are you", idx: 2, m: 1},
-      { question: "Oo", answer: "Yes", idx: 3, m: 1 },
-      { question: "Hindi", answer: "No or Not", idx: 4, m: 1 },
-      { question: "Ako", answer: "I or Me", idx: 5, m: 1 },
-      { question: "Ikaw", answer: "You", idx: 6, m: 1 },
-      { question: "Sarap", answer: "Delicious", idx: 7, m: 1 },
-      { question: "Paumanhin", answer: "Sorry, excuse me", idx: 8, m: 1 },
-      { question: "Paalam", answer: "Farewell", idx: 9, m: 1 },
-      { question: "Tubig", answer: "Water", idx: 10, m: 1 }]
+      // { question: "Kamusta", answer: "How are you", idx: 2, m: 1},
+      // { question: "Oo", answer: "Yes", idx: 3, m: 1 },
+      // { question: "Hindi", answer: "No or Not", idx: 4, m: 1 },
+      // { question: "Ako", answer: "I or Me", idx: 5, m: 1 },
+      // { question: "Ikaw", answer: "You", idx: 6, m: 1 },
+      // { question: "Sarap", answer: "Delicious", idx: 7, m: 1 },
+      // { question: "Paumanhin", answer: "Sorry, excuse me", idx: 8, m: 1 },
+      // { question: "Paalam", answer: "Farewell", idx: 9, m: 1 },
+      // { question: "Tubig", answer: "Water", idx: 10, m: 1 }
+    ]
   })
   .then(
     res.status(201).json({message: 'User created'}))
@@ -100,16 +101,23 @@ app.post('/answer/:username', (req,res) => {
     })
 });
 
-app.post('/question', (req, res) => {
+app.post('/question/:username', (req, res) => {
+  console.log(req.body);
+
   const newQuestion = {
-    question: req.body.question,
-    answer: req.body.answer,
+    question: req.body.question.question,
+    answer: req.body.question.answer,
     m: 1
   };
+  console.log(newQuestion);
 
-  User.findOneAndUpdate(req.params, { questions: { $push: newQuestion }}, () => {
-    res.sendStatus(201);
-  })
+  User.findOneAndUpdate(
+    req.params,
+    { $push: { questions: newQuestion }},
+    (user) => {
+      res.sendStatus(201);
+    }
+  );
 
 });
 

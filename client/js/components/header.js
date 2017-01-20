@@ -65,7 +65,11 @@ class Header extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Available users:
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select
+              value={this.state.value}
+              onChange={this.handleChange}
+              className="select input"
+            >
               {userOptions}
             </select>
           </label>
@@ -76,7 +80,7 @@ class Header extends Component {
             Create User:
             <input
               type="text"
-              className="new-user-input"
+              className="new-user input"
               value={this.state.newUser}
               onChange={this.handleNewUserChange}
             />
