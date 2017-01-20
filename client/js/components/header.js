@@ -7,10 +7,18 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: 'loading...' };
+    this.state = {
+      value: '',
+      newUser: '',
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.handleNewUserChange = this.handleNewUserChange.bind(this);
+    this.handleNewUserSubmit = this.handleNewUserSubmit.bind(this);
+
+
     this.createUser = this.createUser.bind(this);
   }
 
@@ -31,6 +39,19 @@ class Header extends Component {
     event.preventDefault();
     this.props.dispatch(actions.changeUser(this.state.value));
     this.props.dispatch(actions.fetchQuestion(this.state.value));
+  }
+
+  handleNewUserChange(event) {
+    this.setState({newUser: event.target.value});
+  }
+
+  handleNewUserSubmit(event) {
+    console.log('new user', this.state.newUser);
+    event.preventDefault();
+
+    this.props.dispatch(actions.createUser(this.state.newUser));
+    this.setState({ newUser: '' });
+    this.props.dispatch(actions.getUsers());
   }
 
   render() {
@@ -59,9 +80,18 @@ class Header extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <button>
-          Create User
-        </button>
+        <form onSubmit={this.handleNewUserSubmit} className="new-user">
+          <label>
+            Create User:
+            <input
+              type="text"
+              className="new-user-input"
+              value={this.state.newUser}
+              onChange={this.handleNewUserChange}
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
     	</header>
     );
   }

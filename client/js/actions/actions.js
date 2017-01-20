@@ -41,7 +41,7 @@ export const postAnswer = (answer, userid) => (dispatch) => {
   dispatch(getQuestion());
 
   fetch(
-    `http://localhost:8080/users/carloben`,
+    `http://localhost:8080/answer/${userid}`,
     {
       method: 'post',
       headers: {
@@ -113,3 +113,31 @@ export const SHOW_ANSWER = 'SHOW_ANSWER';
 export const showAnswer = () => ({
   type: SHOW_ANSWER,
 });
+
+export const CREATE_USER = 'CREATE_USER';
+export const createUser = (newUser) => (dispatch) => {
+  fetch(
+    `http://localhost:8080/users/${newUser}`,
+    {
+      method: 'post',
+      headers: {
+        "Content-type": "application/json; charset=utf-8"
+      }
+    }
+  )
+  .then((res) => {
+    console.log('created user', newUser);
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
+  .then(() => {
+    dispatch(fetchUsers());
+    dispatch(changeUser(newUser));
+    dispatch(fetchQuestion(newUser));
+  })
+  .catch(console.error);
+}
