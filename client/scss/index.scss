@@ -28,17 +28,44 @@ body {
   font-weight: lighter;
 }
 
+.qanda-container {
+
+}
+
 .tagalog-card {
+    float: left;
+    text-align: center;
+    width: 250px;
+    height: 135px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-left: 45px;
+}
+
+.english-card {
     float: right;
     text-align: center;
     width: 250px;
-    height: 90px;
-    border: 1px solid blue;
+    height: 135px;
+    border: 1px solid black;
     box-sizing: border-box;
     border-radius: 5px;
+    margin-right: 45px;
+}
+
+.answer-and-score {
+    margin: auto;
+    margin-top: 50px;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.answer-form {
+    margin-top: 25px;
 }
 
 .score {
-  float: left;
-  bottom: 0;
+  margin-top: 20px;
 }
