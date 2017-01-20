@@ -34,5 +34,3 @@ const mainReducer = (state = initialState, action) => {
 };
 
 export default mainReducer;
-
-// TODO use combineReducers... lookup syntax

@@ -16,7 +16,7 @@ export const getQuestionSuccess = (question) => ({
 export const fetchQuestion = (userid) => (dispatch) => {
   dispatch(getQuestion());
 
-  fetch(`localhost:8080/users/${userid}`)
+  fetch(`http://localhost:8080/users/${userid}`)
   .then((res) => {
     console.log('fetchQuestion');
     if (!res.ok) {
@@ -27,14 +27,29 @@ export const fetchQuestion = (userid) => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(question => dispatch(fetchQuestionSuccess(question)))
+  .then(question =>
+    dispatch(getQuestionSuccess({
+      score: question.score,
+      question: question.question
+    })
+  ))
   .catch(console.error);
 };
 
-export const postAnswer = (answer) => (dispatch) => {
+export const postAnswer = (answer, userid) => (dispatch) => {
   dispatch(getQuestion());
 
-  fetch(`localhost:8080/answer/${userid}/${answer}`)
+  // fetch(`localhost:8080/answer/${userid}/${answer}`)
+  fetch(
+    `http://localhost:8080/users/${userid}`,
+    {
+      method: 'post',
+      headers: {
+        "Content-type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({ answer })
+    }
+  )
   .then((res) => {
     console.log('post answer', answer);
     if (!res.ok) {
@@ -45,7 +60,7 @@ export const postAnswer = (answer) => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(data => dispatch(GET_QUESTION_SUCCESS({
+  .then(data => dispatch(getQuestionSuccess({
     score: data.score,
     question: data.question,
   })))
