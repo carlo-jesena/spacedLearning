@@ -3,8 +3,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import User from './models/user.js';
-import GoogleStrategy from 'passport-google-oauth20';
-import passport from 'passport';
 
 mongoose.Promise = global.Promise;
 
@@ -24,9 +22,7 @@ const spacedRepAlgo = (arr, answer) => {
   } else {
     questions.m = 1;
   }
-  console.log("checkthe m value: ", questions)
   arr.splice(questions.m, 0, questions);
-  console.log("this is the array: ", arr)
   return arr;
 }
 
@@ -35,6 +31,7 @@ app.use(jsonParser);
 app.use(express.static(process.env.CLIENT_PATH));
 
 // Add API endpoints here
+
 // POST new user--- creates a user object with username, score and questions properties
 app.post('/users/:newUser', jsonParser, (req, res) => {
   if (!req.params.newUser) {
@@ -65,13 +62,9 @@ app.post('/users/:newUser', jsonParser, (req, res) => {
 
 // GET first question object and score of a logged in user
 app.get('/users/:username', (req,res)=>{
-    // console.log("my log: ",req.params)
     User.findOne(req.params)
     .then(userObj => {
-      // console.log("USEROBJ", userObj)
-      // console.log("my log 1: ",userObj.questions[0])
       let initial = userObj;
-      // console.log("my log 2: ",initial.score, initial.questions[0] )
       return res.status(201).json({score: initial.score, question: initial.questions[0]});
     })
     .catch(err => {
@@ -89,25 +82,15 @@ app.get('/userlist', (req, res) => {
 });
 
 // POST to retrieve next question
-// getting back either true or false from client side, update the m value based on that
-// if user gets question right(answer=true), score ++
-// run algortihm update the m value and change the array
-// send back next question
 app.post('/answer/:username', (req,res)=>{
   User.findOne(req.params)
-  // console.log("my log: ", req.params)
   .then(userObj => {
-      // console.log("my log: ", userObj)
-        // let current = userObj;
         let score = userObj.score;
-        // console.log("the score is: ", score)
         if (req.body.answer === true) {
             score += 10;
         }
-        // console.log("current questions: ", current.questions, req.body.answer)
         let newQuestions = spacedRepAlgo(userObj.questions, req.body.answer);
-        // console.log("next questions array: ", newQuestions)
-        User.findOneAndUpdate(req.params, {$set:{score: score, questions: newQuestions}}, (user)=>{
+          User.findOneAndUpdate(req.params, {$set:{score: score, questions: newQuestions}}, (user)=>{
           res.status(201).json({score: score, question: newQuestions[0]});
         });
       })
@@ -115,49 +98,6 @@ app.post('/answer/:username', (req,res)=>{
     res.status(500).json(err)
     })
 });
-
-// passport.use(new GoogleStrategy({
-//     clientID: '706655097490-k63cp7hbpara5l4oemn5517qh83scil5.apps.googleusercontent.com',
-//     clientSecret: 'hd6jsrk9VfVbZmbJuggsLG1_',
-//     callbackURL: "http://localhost:8080/auth/google/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     console.log('accessToken: ', accessToken);
-//     console.log('profile: ', profile);
-//     return done(null, profile);
-//
-//     // let myQues = Ques.find({})
-//
-//     User.findOneAndUpdate({ googleId: profile.id },
-//             { $set: { username: profile.name, accessToken: accessToken } },
-//             { upsert: true, 'new': true })
-//             .then((user) => {
-//                 done(null, user);
-//             }).catch((err) => {
-//                 console.log('catch error', err)
-//             });
-//
-//     // User.findOne({ googleId: profile.id }, function (err, user) {
-//     //   if (!user) {
-//     //     User.create(
-//     //        { googleId: profile.id, accessToken: accessToken }
-//     //     )
-//     //   }
-//     //   return cb(err, user);
-//     // });
-//
-// }));
-//
-// app.get('/auth/google',
-//   passport.authenticate('google', { scope: ['profile'] }));
-//
-// app.get('/auth/google/callback',
-//   passport.authenticate('google', { failureRedirect: '/', session: false }),
-//   function(req, res) {
-//     res.cookie('accessToken', req.user.accessToken, { expires: 0, httpOnly: false});
-//     // Successful authentication, redirect home.
-//     res.redirect('/');
-//   });
 
 function runServer() {
     var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://carloben:carloben@ds111549.mlab.com:11549/spaced-learning';

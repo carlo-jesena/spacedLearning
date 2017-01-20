@@ -21,7 +21,6 @@ class QandA extends Component {
   }
 
   showAnswer() {
-    console.log('called????');
     this.props.dispatch(actions.showAnswer());
   }
 
