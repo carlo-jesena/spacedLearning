@@ -49,21 +49,24 @@ def create_new_user():
 
 ### GET first question object and score of a logged in user
 @app.route('/users/<username>', methods=['GET'])
-def get_first_question():
+def get_first_question(username):
     users = mongo.db.users
 
+    q = users.find_one({'username' : username})
+    output = {'score' : q['score'], 'question' : q['questions[0]']}
 
+    return jsonify(output)
 
 ### GET users list
 @app.route('/userlist', methods=['GET'])
 def get_all_users():
     users = mongo.db.users
-    userList = []
+    user_list = []
 
     for q in users.find():
-        userList.append({'username' : q['username']})
+        user_list.append({'username' : q['username']})
 
-    return jsonify({'result' : userList})
+    return jsonify(user_list)
 
 
 ### running on localhost:8080 instead of cloud9

@@ -60,82 +60,82 @@
 //     res.status(500).json({message: 'Internal server error'})
 //   })
 // });
-
-// GET first question object and score of a logged in user
-app.get('/users/:username', (req,res)=>{
-    User.findOne(req.params)
-    .then(userObj => {
-      let initial = userObj;
-      return res.status(201).json({score: initial.score, question: initial.questions[0]});
-    })
-    .catch(err => {
-        res.status(500).json(err)
-    })
-})
-
-// GET userlist
-app.get('/userlist', (req, res) => {
-  User.find()
-  .then(users => {
-    let userlist = users.map(item => item.username);
-  res.status(200).json(userlist)
-  })
-  .catch(err => res.status(500).json(err));
-});
-
-// POST to retrieve next question
-app.post('/answer/:username', (req,res) => {
-  User.findOne(req.params)
-  .then(userObj => {
-        let score = userObj.score;
-        if (req.body.answer === true) {
-            score += 10;
-        }
-        let newQuestions = spacedRepAlgo(userObj.questions, req.body.answer);
-          User.findOneAndUpdate(req.params, {$set:{score: score, questions: newQuestions}}, (user)=>{
-          res.status(201).json({score: score, question: newQuestions[0]});
-        });
-      })
-  .catch(err => {
-    res.status(500).json(err)
-    })
-});
-
-app.post('/question/:username', (req, res) => {
-  console.log(req.body);
-
-  const newQuestion = {
-    question: req.body.question.question,
-    answer: req.body.question.answer,
-    m: 1
-  };
-  console.log(newQuestion);
-
-  User.findOneAndUpdate(
-    req.params,
-    { $push: { questions: newQuestion }},
-    (user) => {
-      res.sendStatus(201);
-    }
-  );
-
-});
-
-function runServer() {
-    var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://carloben:carloben@ds111549.mlab.com:11549/spaced-learning';
-    mongoose.connect(databaseUri)
-    return new Promise((resolve, reject) => {
-        app.listen(PORT, HOST, (err) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            }
-            const host = HOST || 'localhost';
-            console.log(`Listening on ${host}:${PORT}`);
-        });
-    });
-}
-
-if (require.main === module) {
-    runServer();
-}
+//
+// // GET first question object and score of a logged in user
+// app.get('/users/:username', (req,res)=>{
+//     User.findOne(req.params)
+//     .then(userObj => {
+//       let initial = userObj;
+//       return res.status(201).json({score: initial.score, question: initial.questions[0]});
+//     })
+//     .catch(err => {
+//         res.status(500).json(err)
+//     })
+// })
+//
+// // GET userlist
+// app.get('/userlist', (req, res) => {
+//   User.find()
+//   .then(users => {
+//     let userlist = users.map(item => item.username);
+//   res.status(200).json(userlist)
+//   })
+//   .catch(err => res.status(500).json(err));
+// });
+//
+// // POST to retrieve next question
+// app.post('/answer/:username', (req,res) => {
+//   User.findOne(req.params)
+//   .then(userObj => {
+//         let score = userObj.score;
+//         if (req.body.answer === true) {
+//             score += 10;
+//         }
+//         let newQuestions = spacedRepAlgo(userObj.questions, req.body.answer);
+//           User.findOneAndUpdate(req.params, {$set:{score: score, questions: newQuestions}}, (user)=>{
+//           res.status(201).json({score: score, question: newQuestions[0]});
+//         });
+//       })
+//   .catch(err => {
+//     res.status(500).json(err)
+//     })
+// });
+//
+// app.post('/question/:username', (req, res) => {
+//   console.log(req.body);
+//
+//   const newQuestion = {
+//     question: req.body.question.question,
+//     answer: req.body.question.answer,
+//     m: 1
+//   };
+//   console.log(newQuestion);
+//
+//   User.findOneAndUpdate(
+//     req.params,
+//     { $push: { questions: newQuestion }},
+//     (user) => {
+//       res.sendStatus(201);
+//     }
+//   );
+//
+// });
+//
+// function runServer() {
+//     var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://carloben:carloben@ds111549.mlab.com:11549/spaced-learning';
+//     mongoose.connect(databaseUri)
+//     return new Promise((resolve, reject) => {
+//         app.listen(PORT, HOST, (err) => {
+//             if (err) {
+//                 console.error(err);
+//                 reject(err);
+//             }
+//             const host = HOST || 'localhost';
+//             console.log(`Listening on ${host}:${PORT}`);
+//         });
+//     });
+// }
+//
+// if (require.main === module) {
+//     runServer();
+// }
