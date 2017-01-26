@@ -1,12 +1,18 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='build/dev/client')
 
 app.config['MONGO_DBNAME'] = 'pythontest'
 app.config['MONGO_URI'] = 'mongodb://python:python@ds129469.mlab.com:29469/pythontest'
 
 mongo = PyMongo(app)
+
+### serve static files
+@app.route('/')
+def root():
+    with open("build/dev/client/index.html") as f:
+        return f.read()
 
 ### spaced repitition algorithm
 def spaced_rep_algo(arr, answer):
@@ -52,7 +58,7 @@ def get_first_question(username):
     users = mongo.db.users
 
     q = users.find_one({'username' : username})
-    output = {'score' : q['score'], 'questions' : q['questions']}
+    output = {'score' : q['score'], 'questions' : q['questions'][0]}
 
     return jsonify(output)
 
@@ -68,20 +74,20 @@ def get_all_users():
     return jsonify(user_list)
 
 # PUT to retrieve next question
-@app.route('/answer/<username>', methods=['PUT'])
-def get_next_question(username):
-    users = mongo.db.users
-
-    q = users.find_one({'username' : username})
-    # print(q)
-    score = q['score']
-    answer = request.json['answer']
-
-    if answer == True:
-        score +=10
-
-    newQuestions = spaced_rep_algo(q['questions'], answer)
-    print(newQuestions)
+# @app.route('/answer/<username>', methods=['PUT'])
+# def get_next_question(username):
+#     users = mongo.db.users
+#
+#     q = users.find_one({'username' : username})
+#     # print(q)
+#     score = q['score']
+#     answer = request.json['answer']
+#
+#     if answer == True:
+#         score +=10
+#
+#     newQuestions = spaced_rep_algo(q['questions'], answer)
+#     print(newQuestions)
 
 
 

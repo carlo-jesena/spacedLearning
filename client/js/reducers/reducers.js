@@ -21,6 +21,7 @@ const mainReducer = (state = initialState, action) => {
   }
 
   if (action.type === actions.GET_QUESTION_SUCCESS) {
+    
     return ({
       ...state,
       loading: false,
