@@ -45,12 +45,19 @@ def create_new_user():
             { 'question': "Paalam", 'answer': "Farewell", 'm': '1' },
             { 'question': "Tubig", 'answer': "Water", 'm': '1' }]
     })
+    return jsonify({'message' : 'User created'})
+
+### GET first question object and score of a logged in user
+@app.route('/users/<username>', methods=['GET'])
+def get_first_question():
+    users = mongo.db.users
+
+
 
 ### GET users list
 @app.route('/userlist', methods=['GET'])
 def get_all_users():
     users = mongo.db.users
-
     userList = []
 
     for q in users.find():
