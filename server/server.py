@@ -10,16 +10,17 @@ mongo = PyMongo(app)
 
 ### spaced repitition algorithm
 def spaced_rep_algo(arr, answer):
-    first_question = arr[0]
-    (first_question['m']) = (int(first_question['m']))
-    print (first_question['m'])
+    questions = arr.pop(0)
+    (questions['m']) = (int(questions['m']))
+
     if answer == True:
-        (first_question['m']) *= 2
+        (questions['m']) *= 2
     else:
-        first_question['m'] = 1
-    print (first_question['m'])
-    print (first_question)
-    return first_question
+        questions['m'] = 1
+
+    arr.insert(questions['m'], questions)
+
+    return arr
 
 ### Add API endpoints here
 
