@@ -12,8 +12,19 @@ mongo = PyMongo(app)
 @app.route('/add')
 def add():
     user = mongo.db.users
-    user.insert({'name' : 'Chris'})
+    user.insert({'username' : 'Chris'})
     return 'Added User!'
+
+@app.route('/userlist', methods=['GET'])
+def get_all_users():
+    users = mongo.db.users
+
+    userList = []
+
+    for q in users.find():
+        userList.append({'username' : q['username']})
+
+    return jsonify({'result' : userList})
 
 # @app.route("/hello")
 # def say_hi():
