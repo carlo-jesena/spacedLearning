@@ -8,24 +8,22 @@ app.config['MONGO_URI'] = 'mongodb://python:python@ds129469.mlab.com:29469/pytho
 
 mongo = PyMongo(app)
 
-## spaced repitition algorithm
+### spaced repitition algorithm
 def spaced_rep_algo(arr, answer):
-    questions = arr.shift()
-    if answer == true:
-        questions['m'] *= 2
+    first_question = arr[0]
+    (first_question['m']) = (int(first_question['m']))
+    print (first_question['m'])
+    if answer == True:
+        (first_question['m']) *= 2
     else:
-        questions['m'] = 1
-    arr.splice
-
-# @app.route('/add')
-# def add():
-#     user = mongo.db.users
-#     user.insert({'username' : 'Chris'})
-#     return 'Added User!'
+        first_question['m'] = 1
+    print (first_question['m'])
+    print (first_question)
+    return first_question
 
 ### Add API endpoints here
 
-# POST new user--- creates a user object with username, score and questions properties
+# POST new user-- creates a user object with username, score and questions properties
 @app.route('/users', methods=['POST'])
 def create_new_user():
     users = mongo.db.users
@@ -47,17 +45,17 @@ def create_new_user():
     })
     return jsonify({'message' : 'User created'})
 
-### GET first question object and score of a logged in user
+# GET first question object and score of a logged in user
 @app.route('/users/<username>', methods=['GET'])
 def get_first_question(username):
     users = mongo.db.users
 
     q = users.find_one({'username' : username})
-    output = {'score' : q['score'], 'question' : q['questions[0]']}
+    output = {'score' : q['score'], 'questions' : q['questions']}
 
     return jsonify(output)
 
-### GET users list
+# GET user list
 @app.route('/userlist', methods=['GET'])
 def get_all_users():
     users = mongo.db.users
@@ -67,6 +65,11 @@ def get_all_users():
         user_list.append({'username' : q['username']})
 
     return jsonify(user_list)
+
+# PUT to retrieve next question
+@app.route('/answer/<username>', methods=['PUT'])
+def get_next_question(username):
+    users = mongo.db.users
 
 
 ### running on localhost:8080 instead of cloud9
