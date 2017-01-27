@@ -23,7 +23,7 @@ def spacedRepAlgo(arr, answer):
         questions['m'] *= 2
     else:
         questions['m'] = 1
-    print(questions['m'])
+
     arr.insert(questions['m'], questions)
 
     return arr
@@ -112,4 +112,4 @@ def create_new_question(username):
 
 ### running on localhost:8080 instead of cloud9
 if __name__ == "__main__":
-    app.run(debug=True, host='localhost', port=8084)
+    app.run(debug=True, host='localhost', port=8085)
