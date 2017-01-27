@@ -39,16 +39,16 @@ def create_new_user():
         'username' : username,
         'score' : 0,
         'questions' : [
-            { 'question': "Salamat", 'answer': "Thank you", 'm': '1' },
-            { 'question': "Kamusta", 'answer': "How are you", 'm': '1'},
-            { 'question': "Oo", 'answer': "Yes", 'm': '1' },
-            { 'question': "Hindi", 'answer': "No or Not", 'm': '1' },
-            { 'question': "Ako", 'answer': "I or Me", 'm': '1' },
-            { 'question': "Ikaw", 'answer': "You", 'm': '1' },
-            { 'question': "Sarap", 'answer': "Delicious", 'm': '1' },
-            { 'question': "Paumanhin", 'answer': "Sorry, excuse me", 'm': '1' },
-            { 'question': "Paalam", 'answer': "Farewell", 'm': '1' },
-            { 'question': "Tubig", 'answer': "Water", 'm': '1' }]
+            { 'question': 'Salamat', 'answer': 'Thank you', 'm': '1' },
+            { 'question': 'Kamusta', 'answer': 'How are you', 'm': '1'},
+            { 'question': 'Oo', 'answer': 'Yes', 'm': '1' },
+            { 'question': 'Hindi', 'answer': 'No or Not', 'm': '1' },
+            { 'question': 'Ako', 'answer': 'I or Me', 'm': '1' },
+            { 'question': 'Ikaw', 'answer': 'You', 'm': '1' },
+            { 'question': 'Sarap', 'answer': 'Delicious', 'm': '1' },
+            { 'question': 'Paumanhin', 'answer': 'Sorry, excuse me', 'm': '1' },
+            { 'question': 'Paalam', 'answer': 'Farewell', 'm': '1' },
+            { 'question': 'Tubig', 'answer': 'Water', 'm': '1' }]
     })
     return jsonify({'message' : 'User created'})
 
@@ -104,6 +104,8 @@ def create_new_question(username):
     new_question = { 'question' : question, 'answer' : answer, 'm' : 1 }
 
     users.update({'username' : username}, { '$push' : { 'questions' : new_question }} )
+
+    return jsonify('Question added successfully')
 ### running on localhost:8080 instead of cloud9
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=8080)
