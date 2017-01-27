@@ -19,7 +19,7 @@ def spaced_rep_algo(arr, answer):
     questions = arr.pop(0)
     questions['m'] = (int(questions['m']))
 
-    if answer == True:
+    if answer == "True":
         questions['m'] *= 2
     else:
         questions['m'] = 1
@@ -74,22 +74,25 @@ def get_all_users():
     return jsonify(user_list)
 
 # PUT to retrieve next question
-# @app.route('/answer/<username>', methods=['PUT'])
-# def get_next_question(username):
-#     users = mongo.db.users
-#
-#     q = users.find_one({'username' : username})
-#     # print(q)
-#     score = q['score']
-#     answer = request.json['answer']
-#
-#     if answer == True:
-#         score +=10
-#
-#     newQuestions = spaced_rep_algo(q['questions'], answer)
-#     print(newQuestions)
+@app.route('/answer/<username>', methods=['PUT'])
+def get_next_question(username):
+    users = mongo.db.users
 
+    q = users.find_one({'username' : username})
 
+    questions = q['questions']
+    score = q['score']
+    answer = request.json['answer']
+
+    if answer == "True":
+        score += 10
+
+    new_questions = spaced_rep_algo(questions, answer)
+
+    users.update({'username' : username} , { '$set' : {'score' : score, 'questions' : new_questions} } )
+
+    output = {'score' : q['score'], 'questions' : q['questions'][0]}
+    return jsonify(output)
 
 
 ### running on localhost:8080 instead of cloud9
