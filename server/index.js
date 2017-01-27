@@ -42,15 +42,15 @@ app.post('/users/:newUser', jsonParser, (req, res) => {
     score: 0,
     questions: [
       { question: "Salamat", answer: "Thank you", idx: 1, m: 1 },
-      // { question: "Kamusta", answer: "How are you", idx: 2, m: 1},
-      // { question: "Oo", answer: "Yes", idx: 3, m: 1 },
-      // { question: "Hindi", answer: "No or Not", idx: 4, m: 1 },
-      // { question: "Ako", answer: "I or Me", idx: 5, m: 1 },
-      // { question: "Ikaw", answer: "You", idx: 6, m: 1 },
-      // { question: "Sarap", answer: "Delicious", idx: 7, m: 1 },
-      // { question: "Paumanhin", answer: "Sorry, excuse me", idx: 8, m: 1 },
-      // { question: "Paalam", answer: "Farewell", idx: 9, m: 1 },
-      // { question: "Tubig", answer: "Water", idx: 10, m: 1 }
+      { question: "Kamusta", answer: "How are you", idx: 2, m: 1},
+      { question: "Oo", answer: "Yes", idx: 3, m: 1 },
+      { question: "Hindi", answer: "No or Not", idx: 4, m: 1 },
+      { question: "Ako", answer: "I or Me", idx: 5, m: 1 },
+      { question: "Ikaw", answer: "You", idx: 6, m: 1 },
+      { question: "Sarap", answer: "Delicious", idx: 7, m: 1 },
+      { question: "Paumanhin", answer: "Sorry, excuse me", idx: 8, m: 1 },
+      { question: "Paalam", answer: "Farewell", idx: 9, m: 1 },
+      { question: "Tubig", answer: "Water", idx: 10, m: 1 }
     ]
   })
   .then(
