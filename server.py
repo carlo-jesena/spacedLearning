@@ -19,7 +19,7 @@ def spaced_rep_algo(arr, answer):
     questions = arr.pop(0)
     questions['m'] = (int(questions['m']))
 
-    if answer == "True":
+    if answer == True:
         questions['m'] *= 2
     else:
         questions['m'] = 1
@@ -31,8 +31,8 @@ def spaced_rep_algo(arr, answer):
 ### Add API endpoints here
 
 # POST new user-- creates a user object with username, score and questions properties
-@app.route('/users', methods=['POST'])
-def create_new_user():
+@app.route('/users/<username>`', methods=['POST'])
+def create_new_user(username):
     users = mongo.db.users
     username = request.json['username']
     users.insert({
@@ -58,7 +58,7 @@ def get_first_question(username):
     users = mongo.db.users
 
     q = users.find_one({'username' : username})
-    output = {'score' : q['score'], 'questions' : q['questions'][0]}
+    output = {'score' : q['score'], 'question' : q['questions'][0]}
 
     return jsonify(output)
 
@@ -69,29 +69,29 @@ def get_all_users():
     user_list = []
 
     for q in users.find():
-        user_list.append({'username' : q['username']})
+        user_list.append(q['username'])
 
     return jsonify(user_list)
 
 # PUT to retrieve next question
-@app.route('/answer/<username>', methods=['PUT'])
+@app.route('/answer/<username>', methods=['POST'])
 def get_next_question(username):
     users = mongo.db.users
 
     q = users.find_one({'username' : username})
 
-    questions = q['questions']
+    question = q['question']
     score = q['score']
     answer = request.json['answer']
 
-    if answer == "True":
+    if answer == True:
         score += 10
 
     new_questions = spaced_rep_algo(questions, answer)
 
     users.update({'username':username} , {'$set':{'score':score, 'questions':new_questions}})
 
-    output = {'score' : q['score'], 'questions' : q['questions'][0]}
+    output = {'score' : q['score'], 'question' : q['question'][0]}
     return jsonify(output)
 
 # POST to create new question

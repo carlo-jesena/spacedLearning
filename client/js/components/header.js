@@ -9,7 +9,7 @@ class Header extends Component {
 
     this.state = {
       value: '',
-      newUser: '',
+      username: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -36,14 +36,14 @@ class Header extends Component {
   }
 
   handleNewUserChange(event) {
-    this.setState({newUser: event.target.value});
+    this.setState({username: event.target.value});
   }
 
   handleNewUserSubmit(event) {
     event.preventDefault();
 
-    this.props.dispatch(actions.createUser(this.state.newUser));
-    this.setState({ newUser: '' });
+    this.props.dispatch(actions.createUser(this.state.username));
+    this.setState({ username: '' });
     this.props.dispatch(actions.getUsers());
   }
 
@@ -81,7 +81,7 @@ class Header extends Component {
             <input
               type="text"
               className="new-user input"
-              value={this.state.newUser}
+              value={this.state.username}
               onChange={this.handleNewUserChange}
             />
           </label>

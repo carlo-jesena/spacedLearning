@@ -110,9 +110,9 @@ export const showAnswer = () => ({
   type: SHOW_ANSWER,
 });
 
-export const createUser = (newUser) => (dispatch) => {
+export const createUser = (username) => (dispatch) => {
   fetch(
-    `/users/${newUser}`,
+    `/users/${username}`,
     {
       method: 'post',
       headers: {
@@ -121,7 +121,7 @@ export const createUser = (newUser) => (dispatch) => {
     }
   )
   .then((res) => {
-    console.log('created user', newUser);
+    console.log('created user', username);
     if (!res.ok) {
       const error = new Error(res.statusText);
       error.response = res;
@@ -131,8 +131,8 @@ export const createUser = (newUser) => (dispatch) => {
   })
   .then(() => {
     dispatch(fetchUsers());
-    dispatch(changeUser(newUser));
-    dispatch(fetchQuestion(newUser));
+    dispatch(changeUser(username));
+    dispatch(fetchQuestion(username));
   })
   .catch(console.error);
 }

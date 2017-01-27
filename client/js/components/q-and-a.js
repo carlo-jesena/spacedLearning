@@ -31,8 +31,9 @@ class QandA extends Component {
   handleSubmit(event) {
     let answer = this.props.question.question.answer.toLowerCase();
     let submission = this.state.answer.toLowerCase();
-
+    let question = this.props.question.question.question;
     console.log('Correct answer', answer);
+    console.log('Question: ');
     console.log('Answer submitted', submission);
 
     event.preventDefault();
