@@ -57,7 +57,7 @@ class Header extends Component {
     return (
       <header className="page-header">
         <p className="titleheader">
-          Tagalog With Me
+          Espangol
         </p>
         <p className="username">
           Logged in as: {this.props.username}
