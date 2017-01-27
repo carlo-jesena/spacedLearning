@@ -19,7 +19,7 @@ def spacedRepAlgo(arr, answer):
     questions = arr.pop(0)
     questions['m'] = (int(questions['m']))
 
-    if answer == True :
+    if answer == True:
         questions['m'] *= 2
     else:
         questions['m'] = 1
@@ -34,7 +34,7 @@ def spacedRepAlgo(arr, answer):
 @app.route('/users/<newUser>', methods=['POST'])
 def create_new_user(newUser):
     users = mongo.db.users
-    newUser = request.json['newUser']
+
     users.insert({
         'username' : newUser,
         'score' : 0,
@@ -101,9 +101,10 @@ def create_new_question(username):
     users = mongo.db.users
 
     q = users.find_one({'username' : username})
-    print(q['questions'])
-    question = request.json['question']
-    answer = request.json['answer']
+    json = request.get_json()
+    print(json)
+    question = json['question']['question']
+    answer = json['question']['answer']
     newQuestion = { 'question' : question, 'answer' : answer, 'm' : 1 }
 
     users.update({'username' : username}, { '$push' : { 'questions' : newQuestion }} )
