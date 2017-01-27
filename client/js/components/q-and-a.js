@@ -63,7 +63,7 @@ class QandA extends Component {
         <div className="qanda-container">
           <div className="tagalog-card">
             <h1 className="tagalog-title">
-              Tagalog:
+              Spanish :
             </h1>
             <h2 className="tagalog-question">
               {this.props.question.question.question}

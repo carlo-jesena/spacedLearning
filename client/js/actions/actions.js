@@ -118,6 +118,7 @@ export const createUser = (newUser) => (dispatch) => {
       headers: {
         "Content-type": "application/json; charset=utf-8"
       }
+
     }
   )
   .then((res) => {

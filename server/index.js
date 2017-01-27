@@ -102,7 +102,7 @@ app.post('/answer/:username', (req,res) => {
 });
 
 app.post('/question/:username', (req, res) => {
-  console.log(req.body);
+  console.log('this is req body!!:', req.body);
 
   const newQuestion = {
     question: req.body.question.question,
