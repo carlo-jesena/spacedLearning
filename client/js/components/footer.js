@@ -48,7 +48,7 @@ class Header extends Component {
       <footer className="footer">
         <form onSubmit={this.handleSubmit} className="new-question">
           <label>
-            New Tagalog:
+            New Spanish:
             <input
               type="text"
               className="new-question input"
