@@ -89,12 +89,21 @@ def get_next_question(username):
 
     new_questions = spaced_rep_algo(questions, answer)
 
-    users.update({'username' : username} , { '$set' : {'score' : score, 'questions' : new_questions} } )
+    users.update({'username':username} , {'$set':{'score':score, 'questions':new_questions}})
 
     output = {'score' : q['score'], 'questions' : q['questions'][0]}
     return jsonify(output)
 
+# POST to create new question
+@app.route('/question/<username>', methods=['POST'])
+def create_new_question(username):
+    users = mongo.db.users
 
+    question = request.json['question']
+    answer = request.json['answer']
+    new_question = { 'question' : question, 'answer' : answer, 'm' : 1 }
+
+    users.update({'username' : username}, { '$push' : { 'questions' : new_question }} )
 ### running on localhost:8080 instead of cloud9
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=8080)
